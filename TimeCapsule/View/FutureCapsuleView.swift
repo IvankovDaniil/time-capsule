@@ -6,18 +6,29 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct FutureCapsuleView: View {
     var body: some View {
         NavigationStack {
             List {
-                Text("123")
-                Text("123")
-                Text("123")
+                ForEach(0..<100) { _ in
+                    Text("123")
+                }
             }
+            .padding(.bottom, 20)
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     TitleFutureCapsuleView()
+                }
+                
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        try? Auth.auth().signOut()
+                    } label: {
+                        Text("Exit")
+                    }
+
                 }
             }
         }
