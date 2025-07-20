@@ -43,7 +43,7 @@ struct AuthView: View {
             VStack(alignment: .leading, spacing: 5) {
                 ForEach(authField) { field in
                     Text(field.label)
-                    TextFieldAuthView(title: field.placeholder, text: field.binding, fieldType: field.fieldType)
+                    TextFieldView(title: field.placeholder, text: field.binding, fieldType: field.fieldType)
                         .padding(.bottom, 10)
                     
                     
@@ -70,7 +70,7 @@ struct AuthView: View {
             .font(type: .medium)
             .foregroundStyle(.text)
             .sheet(isPresented: $isForgotPass) {
-                ForgotPassView {
+                ForgotPassView(viewModel: viewModel) {
                     isForgotPass.toggle()
                 }
                 .presentationDetents([.medium])

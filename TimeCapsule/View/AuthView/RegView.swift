@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct RegView: View {
+    @Environment(SessionManager.self) private var sessionManager
+    
     @State var name: String = ""
     @State var email: String = ""
     @State var password: String = ""
@@ -39,7 +41,7 @@ struct RegView: View {
             VStack(alignment: .leading, spacing: 5) {
                 ForEach(regField) { field in
                     Text(field.label)
-                    TextFieldAuthView(title: field.placeholder, text: field.binding, fieldType: field.fieldType)
+                    TextFieldView(title: field.placeholder, text: field.binding, fieldType: field.fieldType)
                         .padding(.bottom, 10)
                 }
                 

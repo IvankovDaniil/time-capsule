@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct ForgotPassView: View {
+    @State var viewModel: AuthViewModel
     @State private var email: String = ""
     var action: () -> Void
-    
-    @State var viewModel: AuthViewModel
     
     var body: some View {
         VStack(spacing: 10) {
@@ -40,11 +39,12 @@ struct ForgotPassView: View {
                 
                 Text("Введите Email адресс и мы вышлем на почту ссылку для восстановления пароля")
                 
-                TextFieldAuthView(title: "Введите Email адресс", text: $email, fieldType: .standart)
+                TextFieldView(title: "Введите Email адресс", text: $email, fieldType: .standart)
                 
                 Button {
                     Task {
                        await viewModel.sendPasswordRest(to: email)
+                        action()
                     }
                 } label: {
                     ZStack {

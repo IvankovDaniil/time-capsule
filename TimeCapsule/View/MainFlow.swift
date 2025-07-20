@@ -12,6 +12,8 @@ enum TabBarFlow {
     case past
 }
 
+
+
 struct MainFlow: View {
     @State var currentTab: TabBarFlow = .future
     @State var currentX: CGFloat = 0
@@ -24,7 +26,7 @@ struct MainFlow: View {
     
     var body: some View {
         TabView(selection: $currentTab) {
-            FutureCapsuleView()
+            FutureCapsuleFlow()
                 .tag(TabBarFlow.future)
             PastCapsuleView()
                 .tag(TabBarFlow.past)
@@ -37,6 +39,7 @@ struct MainFlow: View {
                 animation: animation
             )
         }
+        .padding(.horizontal, 20)
     }
 }
 
@@ -68,12 +71,11 @@ private struct TabButtonView: View {
                         .foregroundStyle(.white)
                         .frame(width: 25, height: 25)
                         .frame(maxWidth: .infinity)
-                        .foregroundStyle(.black)
                         .padding(currentTab == button.tab ? 10 : 0)
                         .background {
                             if button.tab == currentTab {
                                 Circle()
-                                    .fill(.tabBarBg)
+                                    .fill(.text)
                                     .frame(width: 50, height: 50)
                                     .transition(.offset(y: 30))
                                     .animation(.spring, value: currentTab)
@@ -122,19 +124,15 @@ private struct TabBarButtonLabel: View {
             GeometryReader { proxy in
                 let localX = currentX - proxy.frame(in: .global).minX
                 RoundedRectangle(cornerRadius: 20)
-                    .fill(.tabBarBg)
+                    .fill(.text)
                     .clipShape(TabBarButtonShape(currentXValue: localX))
                     .matchedGeometryEffect(id: "customTabBar", in: animation)
             }
         )
-        .padding(.horizontal)
         .padding(.bottom, 20)
-        .frame(height: 90)
+        .frame(height: UIConstants.tabBarHeight)
     }
 }
 
 
-#Preview {
-    MainFlow()
-}
 

@@ -11,11 +11,6 @@ import FirebaseAuth
 @Observable
 class AuthViewModel {
     let firebaseManager = FirebaseManager()
-    
-//    var email: String = ""
-//    var name: String = ""
-//    var password: String = ""
-//    var confirmPassword: String = ""
     var errorMessage: String?
     var isLoading = false
     var isEmailSend = false

@@ -17,7 +17,7 @@ struct PastCapsuleView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
-                    TitleFutureCapsuleView()
+                    
                 }
             }
         }

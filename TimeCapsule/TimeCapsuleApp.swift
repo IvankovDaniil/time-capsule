@@ -27,10 +27,15 @@ struct TimeCapsuleApp: App {
     
     var body: some Scene {
         WindowGroup {
-            switch sessionManager.currentScreen {
-            case .auth: RegView()
-            case .main: MainFlow()
+            Group {
+                switch sessionManager.currentScreen {
+                case .auth: RegView()
+                case .main: MainFlow()
+                case .loading: ProgressView()
+                }
             }
+            .environment(sessionManager)
         }
+        
     }
 }

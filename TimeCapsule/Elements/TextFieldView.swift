@@ -11,7 +11,7 @@ enum FieldType {
     case standart, email, password
 }
 
-struct TextFieldAuthView: View {
+struct TextFieldView: View {
     var title: String
     @Binding var text: String
     var fieldType: FieldType = .standart
